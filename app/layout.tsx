@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Kodex — ROI Report',
+  title: 'Kodex · ROI Report',
   description: '3D book preview',
 };
 

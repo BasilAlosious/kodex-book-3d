@@ -453,7 +453,7 @@ button.submit:active { transform: translateY(1px); }
 
 /* ──────────── Responsive ──────────── */
 
-/* Tablet — collapse to single column, book pulls to the top */
+/* Tablet: collapse to single column, book pulls to the top */
 @media (max-width: 1024px) {
   .layout {
     grid-template-columns: 1fr;
@@ -499,7 +499,7 @@ button.submit:active { transform: translateY(1px); }
   .site-footer { padding: 20px 18px; font-size: 12px; }
 }
 
-/* Tiny — squeezed phone widths */
+/* Tiny: squeezed phone widths */
 @media (max-width: 380px) {
   .layout { padding: 32px 14px 56px; }
   .form-card { padding: 22px 18px; }

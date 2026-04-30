@@ -57,13 +57,13 @@ export default function Page() {
             <IconReport />
             <span>Report</span>
             <span className="dot">//</span>
-            <span>Custom ROI Report</span>
+            <span>Custom ROI Analysis</span>
           </div>
 
-          <h1>A custom ROI report for your law enforcement request program.</h1>
+          <h1>How much is your law enforcement request program really costing you?</h1>
 
           <p className="subtitle">
-            See what your law enforcement request program is actually costing you.
+            Custom math on what you're spending, and what you can reclaim.
           </p>
 
           <hr className="rule" />
@@ -74,24 +74,26 @@ export default function Page() {
             <li>
               <IconSearch />
               <span>
-                <span className="label">Efficiency.</span> How much of your team's
-                time is going to request handling, and what automation realistically
-                looks like for your volume.
+                <span className="label">Where your team's hours are going.</span>{' '}
+                A breakdown of the time cost per request, and how much of it is
+                realistically automatable today.
               </span>
             </li>
             <li>
               <IconCoin />
               <span>
-                <span className="label">Cost recovery.</span> An estimate of annual
-                reimbursements your organization is likely entitled to but not
-                collecting.
+                <span className="label">What you're leaving on the table.</span>{' '}
+                A line-by-line estimate of the federal reimbursements your
+                organization can claim but probably isn't.
               </span>
             </li>
             <li>
               <IconTrend />
               <span>
-                <span className="label">3-year projection.</span> What your program
-                looks like as volume grows.
+                <span className="label">Where this goes in three years.</span>{' '}
+                A projection of cost, headcount, and recovery as request volume
+                scales, so you can plan for it instead of being caught off-guard
+                by it.
               </span>
             </li>
           </ul>
@@ -100,14 +102,10 @@ export default function Page() {
 
           <div className="summary">
             <p>
-              Most legal ops teams managing lawful data requests are running on
-              spreadsheets, email threads, and institutional knowledge. It works
-              until it doesn't.
-            </p>
-            <p>
-              What fewer teams know is that a portion of the work is federally
-              reimbursable. Most organizations have never set up a program to
-              collect it. Fill out the form — we'll do the math.
+              Most legal ops teams running lawful data requests are stuck on
+              spreadsheets and email threads. It works, until volume doubles, an
+              audit lands, or you realize you've been leaving federal
+              reimbursements on the table for years.
             </p>
           </div>
         </section>
@@ -120,7 +118,7 @@ export default function Page() {
 
           <form className="form-card" onSubmit={(e) => e.preventDefault()}>
             <span className="index-tag">01 / REPORT</span>
-            <h2>Get my ROI report.</h2>
+            <h2>Tell us about your program.</h2>
 
             <div className="field">
               <label htmlFor="company">Company Name*</label>
@@ -162,17 +160,17 @@ export default function Page() {
             <label className="consent">
               <input type="checkbox" required />
               <span>
-                By checking this box, you agree to receive communications from
-                Kodex. Review our <a href="#privacy">Privacy Policy</a>.
+                I'd like to receive occasional updates from Kodex. See our{' '}
+                <a href="#privacy">Privacy Policy</a>.
               </span>
             </label>
 
-            <button type="submit" className="submit">Get free report</button>
+            <button type="submit" className="submit">Run my numbers</button>
 
             <div className="checkmarks">
-              <span><Tick /> Sent instantly</span>
-              <span><Tick /> No signup</span>
-              <span><Tick /> Custom to you</span>
+              <span><Tick /> Specific to your numbers</span>
+              <span><Tick /> No sales call</span>
+              <span><Tick /> Within 24 hours</span>
             </div>
           </form>
         </aside>

@@ -30,13 +30,13 @@ export async function generateSpineTexture(frontCoverUrl: string): Promise<THREE
     ctx.fillRect(Math.random() * W, Math.random() * H, 1, 1);
   }
 
-  // Kodex logo (left edge — appears at TOP of spine after rotation)
+  // Kodex logo (left edge, appears at TOP of spine after rotation)
   const logoH = 150;
   const logoAspect = (logo.naturalWidth || 68) / (logo.naturalHeight || 16);
   const logoW = logoH * logoAspect;
   ctx.drawImage(logo, 90, H / 2 - logoH / 2, logoW, logoH);
 
-  // CLOC 2026 (right edge — appears at BOTTOM of spine after rotation)
+  // CLOC 2026 (right edge, appears at BOTTOM of spine after rotation)
   ctx.font = '500 92px -apple-system, BlinkMacSystemFont, Inter, "Segoe UI", sans-serif';
   ctx.textAlign = 'right';
   ctx.textBaseline = 'middle';

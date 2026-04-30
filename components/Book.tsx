@@ -33,7 +33,7 @@ const coverFinish = {
 
 export default function Book() {
   const groupRef = useRef<THREE.Group>(null!);
-  const targetRot = useRef(0);
+  const targetRot = useRef(-0.45); // start slanted to reveal the spine
   const dragging = useRef(false);
   const lastX = useRef(0);
 
@@ -112,20 +112,15 @@ export default function Book() {
     };
   }, [front, back, spineTex, pageEdgeTex]);
 
-  useEffect(() => {
-    const onWheel = (e: WheelEvent) => {
-      targetRot.current += e.deltaY * 0.002;
-    };
-    window.addEventListener('wheel', onWheel, { passive: true });
-    return () => window.removeEventListener('wheel', onWheel);
-  }, []);
+  // Slanted forward tilt, kept fixed while the book rotates around Y
+  const REST_ROT_X = -0.13;
 
   useFrame((_, dt) => {
     if (!groupRef.current) return;
     if (!dragging.current) targetRot.current += dt * 0.12;
     const g = groupRef.current;
     g.rotation.y += (targetRot.current - g.rotation.y) * 0.08;
-    g.rotation.x = -0.08;
+    g.rotation.x += (REST_ROT_X - g.rotation.x) * 0.08;
   });
 
   const onDown = (e: ThreeEvent<PointerEvent>) => {
@@ -163,7 +158,7 @@ export default function Book() {
         <boxGeometry args={[BOARD_T, H, D - 2 * BOARD_T]} />
       </mesh>
 
-      {/* Page block — recessed inside the cover */}
+      {/* Page block, recessed inside the cover */}
       <mesh position={[PAGE_OFFSET_X, 0, 0]} material={pageMats}>
         <boxGeometry args={[PAGE_W, PAGE_H, PAGE_D]} />
       </mesh>
