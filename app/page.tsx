@@ -60,10 +60,10 @@ export default function Page() {
             <span>Custom ROI Analysis</span>
           </div>
 
-          <h1>How much is your law enforcement request program really costing you?</h1>
+          <h1>A custom ROI report for your law enforcement request program.</h1>
 
           <p className="subtitle">
-            Custom math on what you're spending, and what you can reclaim.
+            See what your law enforcement request program is actually costing you.
           </p>
 
           <hr className="rule" />
