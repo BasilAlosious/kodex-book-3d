@@ -169,8 +169,6 @@ export default function Page() {
 
             <div className="checkmarks">
               <span><Tick /> Specific to your numbers</span>
-              <span><Tick /> No sales call</span>
-              <span><Tick /> Within 24 hours</span>
             </div>
           </form>
         </aside>
