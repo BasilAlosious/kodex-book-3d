@@ -138,6 +138,7 @@ export default function Book() {
   return (
     <group
       ref={groupRef}
+      position={[0, -0.1, 0]}
       onPointerDown={onDown}
       onPointerMove={onMove}
       onPointerUp={onUp}

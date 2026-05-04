@@ -1,6 +1,24 @@
 'use client';
 
+import { useEffect } from 'react';
 import BookCanvas from '@/components/BookCanvas';
+
+type HubSpotFormsApi = {
+  forms: {
+    create: (options: {
+      portalId: string;
+      formId: string;
+      region: string;
+      target: string;
+    }) => void;
+  };
+};
+
+declare global {
+  interface Window {
+    hbspt?: HubSpotFormsApi;
+  }
+}
 
 function IconReport() {
   return (
@@ -40,12 +58,57 @@ function IconTrend() {
   );
 }
 
-function Tick() {
-  return (
-    <svg className="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
+function HubSpotForm() {
+  useEffect(() => {
+    const target = document.getElementById('hubspot-roi-form');
+    if (!target) return undefined;
+
+    const createForm = () => {
+      if (!window.hbspt?.forms) return;
+
+      target.innerHTML = '';
+      window.hbspt.forms.create({
+        portalId: '44165336',
+        formId: 'ec1acf40-2eb0-4db5-abed-c65da1ed18b9',
+        region: 'na1',
+        target: '#hubspot-roi-form',
+      });
+    };
+
+    if (window.hbspt?.forms) {
+      createForm();
+      return () => {
+        target.innerHTML = '';
+      };
+    }
+
+    const scriptSrc = 'https://js.hsforms.net/forms/embed/v2.js';
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      `script[src="${scriptSrc}"]`,
+    );
+
+    if (existingScript) {
+      existingScript.addEventListener('load', createForm);
+      return () => {
+        existingScript.removeEventListener('load', createForm);
+        target.innerHTML = '';
+      };
+    }
+
+    const script = document.createElement('script');
+    script.src = scriptSrc;
+    script.async = true;
+    script.defer = true;
+    script.addEventListener('load', createForm);
+    document.body.appendChild(script);
+
+    return () => {
+      script.removeEventListener('load', createForm);
+      target.innerHTML = '';
+    };
+  }, []);
+
+  return <div id="hubspot-roi-form" className="hubspot-form" />;
 }
 
 export default function Page() {
@@ -116,61 +179,11 @@ export default function Page() {
             <span className="corner-tag">CLOC 2026</span>
           </div>
 
-          <form className="form-card" onSubmit={(e) => e.preventDefault()}>
+          <div className="form-card">
             <span className="index-tag">01 / REPORT</span>
             <h2>Tell us about your program.</h2>
-
-            <div className="field">
-              <label htmlFor="company">Company Name*</label>
-              <input id="company" name="company" type="text" required />
-            </div>
-
-            <div className="field">
-              <label htmlFor="requests">Annual Lawful Data Requests*</label>
-              <input id="requests" name="requests" type="number" min={0} required />
-            </div>
-
-            <div className="field">
-              <label htmlFor="civil">Percent of Requests that are Civil*</label>
-              <input id="civil" name="civil" type="number" min={0} max={100} required />
-              <span className="helper">Enter an integer (e.g. 50 for 50%)</span>
-            </div>
-
-            <div className="field">
-              <label htmlFor="ftes">Team Size / FTEs Handling Requests*</label>
-              <input id="ftes" name="ftes" type="number" min={0} step="0.5" required />
-            </div>
-
-            <div className="field-row">
-              <div className="field">
-                <label htmlFor="first">First name*</label>
-                <input id="first" name="first" type="text" required />
-              </div>
-              <div className="field">
-                <label htmlFor="last">Last name*</label>
-                <input id="last" name="last" type="text" required />
-              </div>
-            </div>
-
-            <div className="field">
-              <label htmlFor="email">Business Email*</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-
-            <label className="consent">
-              <input type="checkbox" required />
-              <span>
-                I'd like to receive occasional updates from Kodex. See our{' '}
-                <a href="#privacy">Privacy Policy</a>.
-              </span>
-            </label>
-
-            <button type="submit" className="submit">Run my numbers</button>
-
-            <div className="checkmarks">
-              <span><Tick /> Specific to your numbers</span>
-            </div>
-          </form>
+            <HubSpotForm />
+          </div>
         </aside>
       </div>
 

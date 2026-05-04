@@ -260,6 +260,7 @@ hr.rule {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
+  max-height: min(640px, 62vh);
   user-select: none;
   cursor: grab;
   background: transparent;
@@ -329,6 +330,94 @@ hr.rule {
   color: var(--text-heading);
   margin: 4px 0 22px 14px;
   letter-spacing: -0.005em;
+}
+
+.hubspot-form {
+  min-height: 360px;
+}
+
+.hubspot-form form {
+  font-family: 'General Sans', sans-serif;
+}
+
+.hubspot-form fieldset {
+  max-width: none !important;
+}
+
+.hubspot-form .hs-form-field {
+  margin-bottom: 14px;
+}
+
+.hubspot-form label {
+  font-family: 'General Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-body);
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+}
+
+.hubspot-form .input {
+  margin-right: 0 !important;
+}
+
+.hubspot-form input,
+.hubspot-form select,
+.hubspot-form textarea {
+  width: 100% !important;
+  font-family: 'General Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-heading);
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.hubspot-form input:focus,
+.hubspot-form select:focus,
+.hubspot-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 64, 0.10);
+}
+
+.hubspot-form .hs-error-msgs {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+}
+
+.hubspot-form .hs-error-msg {
+  color: var(--secondary);
+  font-size: 12px;
+}
+
+.hubspot-form .hs-submit .actions {
+  margin: 0;
+  padding: 4px 0 0;
+}
+
+.hubspot-form input[type='submit'],
+.hubspot-form .hs-button {
+  width: 100% !important;
+  background: var(--primary);
+  color: #ffffff;
+  border: 0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-family: 'General Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+  letter-spacing: 0.01em;
+}
+
+.hubspot-form input[type='submit']:hover,
+.hubspot-form .hs-button:hover {
+  background: #1a1a5a;
 }
 
 .field {
@@ -466,7 +555,12 @@ button.submit:active { transform: translateY(1px); }
     order: -1;
   }
   .col-left { padding-right: 0; }
-  .book-stage { aspect-ratio: 4 / 4.5; max-width: 480px; margin: 0 auto; }
+  .book-stage {
+    aspect-ratio: 4 / 4.8;
+    max-width: min(480px, 100%);
+    max-height: none;
+    margin: 0 auto;
+  }
   .form-card { max-width: 520px; margin: 0 auto; }
 }
 
@@ -485,7 +579,10 @@ button.submit:active { transform: translateY(1px); }
   .findings li { font-size: 15px; grid-template-columns: 22px 1fr; gap: 12px; }
   .findings .icon { width: 20px; height: 20px; }
   .summary p { font-size: 16px; }
-  .book-stage { aspect-ratio: 4 / 4; max-width: 360px; }
+  .book-stage {
+    aspect-ratio: 4 / 4.8;
+    max-width: min(360px, 100%);
+  }
   .form-card {
     padding: 26px 22px;
     --n: 8px;
