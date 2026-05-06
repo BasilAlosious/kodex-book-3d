@@ -7,6 +7,9 @@ import { TextureLoader } from 'three';
 import { generateSpineTexture } from './SpineTexture';
 import { generatePageEdgeTexture } from './PageEdgeTexture';
 
+// Asset base path — set via NEXT_PUBLIC_BASE_PATH for Webflow Cloud (/customroi)
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 // Book proportions (cover aspect 468:530 ≈ 0.88)
 const W = 1.4;
 const H = 1.585;
@@ -38,8 +41,8 @@ export default function Book() {
   const lastX = useRef(0);
 
   const [front, back] = useLoader(TextureLoader, [
-    '/textures/cover_front.png',
-    '/textures/cover_back.png',
+    `${BASE}/textures/cover_front.png`,
+    `${BASE}/textures/cover_back.png`,
   ]);
 
   useMemo(() => {
@@ -51,7 +54,7 @@ export default function Book() {
 
   const [spineTex, setSpineTex] = useState<THREE.Texture | null>(null);
   useEffect(() => {
-    generateSpineTexture('/textures/cover_front.png').then(setSpineTex);
+    generateSpineTexture(`${BASE}/textures/cover_front.png`).then(setSpineTex);
   }, []);
 
   const pageEdgeTex = useMemo(() => generatePageEdgeTexture(), []);

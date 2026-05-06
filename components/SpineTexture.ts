@@ -4,7 +4,8 @@ import * as THREE from 'three';
 // out the Kodex logo at top + CLOC 2026 at bottom.
 export async function generateSpineTexture(frontCoverUrl: string): Promise<THREE.Texture> {
   const cover = await loadImage(frontCoverUrl);
-  const logo = await loadImage('/textures/kodex-logo.svg');
+  const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const logo = await loadImage(`${BASE}/textures/kodex-logo.svg`);
 
   // Sample two points along the cover gradient
   const sampleTop = sampleAverageColor(cover, 0.55, 0.0, 0.9, 0.15);
