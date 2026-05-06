@@ -8,7 +8,8 @@ import { generateSpineTexture } from './SpineTexture';
 import { generatePageEdgeTexture } from './PageEdgeTexture';
 
 // Asset base path — set via NEXT_PUBLIC_BASE_PATH for Webflow Cloud (/customroi)
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+// Trimmed defensively because dashboard inputs often introduce trailing whitespace.
+const BASE = (process.env.NEXT_PUBLIC_BASE_PATH || '').trim();
 
 // Book proportions (cover aspect 468:530 ≈ 0.88)
 const W = 1.4;
