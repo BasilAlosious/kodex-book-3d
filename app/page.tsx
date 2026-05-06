@@ -1,7 +1,14 @@
 'use client';
 
 import { useEffect } from 'react';
-import BookCanvas from '@/components/BookCanvas';
+import dynamic from 'next/dynamic';
+
+// R3F has internals that don't survive Next.js prerender — load client-only
+// so the build doesn't try to evaluate the WebGL canvas on the server.
+const BookCanvas = dynamic(() => import('@/components/BookCanvas'), {
+  ssr: false,
+  loading: () => null,
+});
 
 type HubSpotFormsApi = {
   forms: {
